@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Collection from './Components/Collection';
 import Archive from './Pages/Archive';
-import ProductDetail from './components/ProductDetail';
+import ProductDetail from './Components/ProductDetail';
 import Manifest from './Pages/Manifest';
 
 function App() {
