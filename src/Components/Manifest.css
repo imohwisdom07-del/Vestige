@@ -1,0 +1,128 @@
+.manifest-page {
+  background-color: #f5f5f3;
+  padding: 160px 6vw 100px;
+  min-height: 100vh;
+  font-family: monospace;
+}
+
+.manifest-header { margin-bottom: 40px; }
+
+.status-tag {
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.manifest-meta {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* --- TABLE GRID SYSTEM --- */
+.table-header, .manifest-row {
+  display: grid;
+  /* 5 columns: Ref, Info, Size, Price, Remove */
+  grid-template-columns: 0.8fr 2.5fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: 900;
+  font-size: 11px;
+  padding: 15px 0;
+  border-bottom: 1px solid #000;
+  opacity: 0.4;
+}
+
+.manifest-row {
+  padding: 30px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.m-info { display: flex; flex-direction: column; }
+.m-name { font-size: 16px; text-transform: uppercase; }
+.m-sub { font-size: 9px; opacity: 0.5; }
+
+.m-remove {
+  background: none;
+  border: none;
+  color: #ff4400; /* VESTIGE RED */
+  font-family: monospace;
+  font-weight: 900;
+  cursor: pointer;
+  text-align: right;
+}
+
+/* --- FOOTER & TOTALS --- */
+.manifest-footer { margin-top: 60px; }
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 0;
+}
+
+.total-label-group { display: flex; flex-direction: column; }
+.total-label { font-size: 24px; font-weight: 900; }
+.tax-label { font-size: 10px; opacity: 0.5; }
+.total-price { font-size: 32px; font-weight: 900; }
+
+.execute-btn {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 25px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.execute-btn:hover:not(:disabled) { background: #ff4400; }
+.execute-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 900px) {
+  .manifest-page { padding: 100px 5% 50px; }
+
+  .hero-title-large { font-size: 40px; letter-spacing: -1px; }
+
+  .table-header { display: none; } /* Hide headers on mobile */
+
+  .manifest-row {
+    grid-template-columns: 1fr 1fr; /* 2-column grid for mobile */
+    gap: 15px;
+    padding: 25px 0;
+    position: relative;
+  }
+
+  .m-ref { font-size: 10px; grid-column: span 2; opacity: 0.5; }
+
+  .m-info { grid-column: span 2; }
+  .m-name { font-size: 18px; }
+
+  .m-size { font-size: 14px; }
+  .m-price { font-size: 14px; text-align: right; }
+
+  .m-remove {
+    grid-column: span 2;
+    text-align: left;
+    padding: 10px 0;
+    border-top: 1px dashed #ccc;
+    margin-top: 10px;
+  }
+
+  .total-label { font-size: 18px; }
+  .total-price { font-size: 24px; }
+  
+  .execute-btn { padding: 20px; font-size: 12px; }
+}

@@ -1,0 +1,171 @@
+/* 1. THE RESET - This kills the white edges/gaps */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hero-gate {
+  /* Changed from fixed to relative/absolute to stay in the stack */
+  position: relative; 
+  width: 100vw;
+  height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000;
+  /* CHANGED: Must be positive to be clickable */
+  z-index: 10; 
+}
+
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Lowest layer */
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  /* Ensures video fills every pixel of the screen */
+  object-fit: cover; 
+  object-position: center; 
+  filter: brightness(0.5) contrast(1.2); 
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Sits over video */
+  pointer-events: none; /* VERY IMPORTANT: Let's mouse "reach through" the black smoke to hit buttons */
+  background: radial-gradient(
+    circle at center, 
+    transparent 0%, 
+    rgba(0,0,0,0.4) 60%, 
+    rgba(0,0,0,0.9) 100%
+  );
+}
+
+.gate-content {
+  position: relative;
+  z-index: 10; /* HIGHEST LAYER - Must be higher than overlay */
+  text-align: center;
+  color: #fff;
+}
+
+.logo-title {
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  letter-spacing: 2rem;
+  font-weight: 200;
+  margin-bottom: 5rem;
+  margin-left: 2rem; 
+  text-transform: uppercase;
+}
+
+.category-selection {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.gate-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 15px 45px;
+  font-size: 11px;
+  letter-spacing: 5px;
+  cursor: pointer;
+  /* Ensure the button is on top of any other content logic */
+  position: relative;
+  z-index: 20; 
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+}
+
+.gate-btn:hover {
+  background: #fff !important; /* Force the white background */
+  color: #000 !important;      /* Force the black text */
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.vertical-line {
+  width: 1px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.scroll-explorer {
+  position: absolute;
+  bottom: 40px; 
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 6px;
+  opacity: 0.5;
+  text-transform: uppercase;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+/* --- PREVIOUS STYLES STAY THE SAME UNTIL MEDIA QUERY --- */
+
+@media (max-width: 768px) {
+  .logo-title {
+    /* Reduce letter-spacing so text stays on one line */
+    letter-spacing: 0.8rem; 
+    font-size: 3rem;
+    margin-left: 0.8rem; /* Keep it centered with the spacing */
+    margin-bottom: 3rem;
+  }
+
+  .category-selection {
+    /* Stack buttons vertically on mobile */
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .vertical-line {
+    /* Turn the vertical line into a small horizontal divider or hide it */
+    width: 30px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .gate-btn {
+    width: 220px; /* Consistent width for both buttons on mobile */
+    padding: 18px 0;
+    font-size: 10px;
+    letter-spacing: 3px;
+    background: rgba(255, 255, 255, 0.05); /* Slight tint for touch targets */
+    backdrop-filter: blur(5px);
+  }
+
+  .scroll-explorer {
+    bottom: 30px;
+    width: 100%;
+    font-size: 8px;
+    letter-spacing: 4px;
+  }
+}
+
+/* Support for very small phones (iPhone SE) */
+@media (max-width: 380px) {
+  .logo-title {
+    font-size: 2.2rem;
+    letter-spacing: 0.5rem;
+  }
+}

@@ -1,0 +1,232 @@
+/* --- ARCHIVE.CSS - VESTIGE x LUXURY-01 DATA VAULT --- */
+
+.archive-page {
+  background-color: #f5f5f3;
+  padding: 180px 6vw 100px;
+}
+
+.archive-hero {
+  margin-bottom: 100px;
+}
+
+.status-tag {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.hero-title-large {
+  font-size: clamp(60px, 10vw, 120px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin: 0;
+  line-height: 0.9;
+}
+
+.hero-subtitle {
+  font-size: 16px; /* Slightly larger for readability */
+  letter-spacing: 2px; /* Reduced tracking for a cleaner look */
+  color: #333; /* Darker for better layman contrast */
+  margin-top: 25px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* --- THE DATA ROWS --- */
+
+.archive-entry-row {
+  display: grid;
+  grid-template-columns: 80px 250px 1fr 180px;
+  align-items: center;
+  border-top: 2.5px solid #1a1a1a;
+  padding: 45px 0; /* Slightly more breathing room */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.archive-entry-row:last-child {
+  border-bottom: 2.5px solid #1a1a1a;
+}
+
+/* --- THE VIEW DETAILS BUTTON --- */
+
+.entry-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.view-btn {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 14px 28px;
+  border: 1px solid #000;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: inline-block;
+  min-width: 160px;
+}
+
+/* Ensure hover only works for active items */
+.unit-active .view-btn:hover {
+  background-color: transparent;
+  color: #000;
+  box-shadow: 4px 4px 0px #000; /* Brutalist shadow effect */
+}
+
+/* --- SOLD STATE STYLING --- */
+
+.unit-sold {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.unit-sold .entry-visual img {
+  filter: grayscale(100%) contrast(0.8);
+}
+
+/* Layman-friendly Sold Stamp */
+.unit-sold::before {
+  content: "RECORD_ACQUIRED";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  border: 1.5px solid #ff4400;
+  color: #ff4400;
+  padding: 8px 20px;
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 4px;
+  z-index: 5;
+  background-color: rgba(245, 245, 243, 0.9);
+  pointer-events: none;
+}
+
+.view-btn.disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  border: 1px solid #ccc;
+  text-decoration: line-through;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.tag-sold {
+  background: #ff4400 !important;
+}
+
+/* --- ACTIVE STATE HOVERS --- */
+
+.unit-active:hover {
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.unit-active:hover .entry-visual img {
+  filter: grayscale(0%);
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.entry-index {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 800;
+  color: #bbb;
+}
+
+.entry-visual img {
+  height: 140px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: all 0.6s ease;
+}
+
+.entry-name {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.entry-tags {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+}
+
+.tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: #000;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* --- UPDATED MOBILE VIEW --- */
+
+@media (max-width: 900px) {
+  .archive-page {
+    padding: 120px 5vw 60px;
+  }
+
+  .archive-hero {
+    margin-bottom: 60px;
+  }
+
+  .archive-entry-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 40px 0;
+    text-align: left;
+  }
+
+  .unit-sold::before {
+    font-size: 10px;
+    left: 20px; /* Aligned to corner for mobile */
+    top: 20px;
+    transform: none;
+  }
+
+  .entry-visual img {
+    height: 180px;
+    filter: grayscale(0%);
+  }
+
+  .entry-name {
+    font-size: 26px;
+  }
+
+  .entry-action {
+    justify-content: flex-start;
+    margin-top: 15px;
+  }
+
+  .view-btn {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 450px) {
+  .hero-title-large { font-size: 44px; }
+  .hero-subtitle { 
+    font-size: 12px; 
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+}

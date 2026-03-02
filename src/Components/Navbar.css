@@ -1,0 +1,152 @@
+/* --- LUXURY-01 MASTER STYLES --- */
+:root {
+  --bone: #f5f5f3;
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  margin: 0;
+  padding-top: 110px; 
+  background-color: var(--bone);
+}
+
+/* --- SEARCH OVERLAY --- */
+.search-overlay-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- NAVBAR CORE --- */
+.vestige-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 10000;
+  box-sizing: border-box;
+}
+
+/* --- LOGO: ABSOLUTE CENTER --- */
+.nav-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10010;
+}
+
+.logo-img { height: 90px; width: auto; display: block; }
+
+/* --- SECTIONS --- */
+.nav-section { display: flex; align-items: center; flex: 1; }
+.nav-section.left { justify-content: flex-start; gap: 40px; }
+.nav-section.right { justify-content: flex-end; gap: 25px; }
+
+.nav-link {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* --- SEARCH COMPONENTS --- */
+.search-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-search-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--black);
+  color: var(--black);
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+  outline: none;
+  width: 180px;
+  padding: 5px 0;
+  text-transform: uppercase;
+}
+
+.search-close-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  margin-left: 10px;
+  color: var(--black);
+}
+
+.search-icon-btn { background: none; border: none; cursor: pointer; display: flex; }
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 900px) {
+  body { padding-top: 70px; }
+  .vestige-navbar { height: 70px; padding: 0 20px; }
+  .logo-img { height: 42px; }
+
+  .mobile-toggle { display: flex; flex-direction: column; gap: 6px; width: 25px; z-index: 10020; order: 1; }
+  .mobile-toggle .line { width: 100%; height: 2px; background: var(--black); }
+
+  /* Right section icons stay visible */
+  .nav-section.right { order: 3; flex: 0; z-index: 10020; gap: 15px; position: relative; }
+
+  /* Mobile Search Bar Drops Below Logo */
+  .nav-search-wrapper.active {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    padding: 20px;
+    z-index: 10021;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .search-input-container { width: 100%; justify-content: space-between; }
+  .nav-search-input { width: 85%; }
+  .search-close-btn { font-size: 20px; padding: 5px; }
+
+  /* Full screen menu */
+  .nav-section.left {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: var(--white);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; visibility: hidden;
+    transition: var(--transition);
+    z-index: 10015;
+  }
+  .nav-section.left.show { opacity: 1; visibility: visible; }
+  .nav-section.left.show .nav-link { font-size: 28px; letter-spacing: 6px; margin: 15px 0; }
+  
+  /* Hamburger to X */
+  .menu-open .line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .menu-open .line:nth-child(2) { opacity: 0; }
+  .menu-open .line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
