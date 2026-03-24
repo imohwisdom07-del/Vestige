@@ -19,7 +19,6 @@ const Manifest = ({ manifestItems = [], removeFromManifest }) => {
       </header>
 
       <main className="manifest-table">
-        {/* Table header hidden on mobile via CSS */}
         <div className="table-header">
           <span>REF_ID</span>
           <span>UNIT_DESCRIPTION</span>

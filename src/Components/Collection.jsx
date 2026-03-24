@@ -85,7 +85,7 @@ const Collection = ({ externalQuery, addToManifest }) => {
               <img src={shoe.imgBase} className="img-base" alt={shoe.name} />
               <img src={shoe.imgHover} className="img-hover" alt={shoe.name} />
               
-              {/* UPDATED: Layman-friendly technical command */}
+              
               <div className="touch-hint">
                 <span>[ ACCESS_PRODUCT_SPECS ]</span>
               </div>

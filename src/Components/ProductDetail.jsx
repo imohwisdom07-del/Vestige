@@ -7,8 +7,8 @@ const ProductDetail = ({ addToManifest, addToVault }) => {
   const { id } = useParams();
   const [shoe, setShoe] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
-  const [manifestStatus, setManifestStatus] = useState('idle'); // idle | success
-  const [vaultStatus, setVaultStatus] = useState('idle');       // idle | success
+  const [manifestStatus, setManifestStatus] = useState('idle');
+  const [vaultStatus, setVaultStatus] = useState('idle');       
 
   useEffect(() => {
     const foundShoe = VESTIGE_COLLECTION.find(p => p.id === parseInt(id));
@@ -18,22 +18,18 @@ const ProductDetail = ({ addToManifest, addToVault }) => {
 
   const sizes = ["37", "38", "39", "40", "41", "42", "43", "44", "45"];
 
-  // ── ADD TO MANIFEST ────────────────────────────────────────────────────────
   const handleAcquisition = () => {
     if (!selectedSize) {
       alert("CRITICAL_ERROR: DIMENSION_NOT_SELECTED. PLEASE_SELECT_SIZE.");
       return;
     }
 
-    // NOTE: instanceId is also stamped in App.js addToManifest,
-    // but keeping it here too for safety if this component is ever used standalone
     const unitPayload = {
       ...shoe,
       size: selectedSize,
       instanceId: `${shoe.id}-${selectedSize}-${Date.now()}`,
     };
 
-    // FIX: Guard so this never crashes if prop is missing
     if (addToManifest) {
       addToManifest(unitPayload);
       console.log("UNIT_SENT_TO_MANIFEST:", unitPayload);
@@ -42,9 +38,8 @@ const ProductDetail = ({ addToManifest, addToVault }) => {
     }
   };
 
-  // ── ADD TO VAULT ───────────────────────────────────────────────────────────
   const handleVault = () => {
-    // FIX: Guard added — previously would crash because addToVault was undefined
+    
     if (!addToVault) return;
     addToVault(shoe);
     console.log("UNIT_SAVED_TO_VAULT:", shoe);
@@ -105,7 +100,6 @@ const ProductDetail = ({ addToManifest, addToVault }) => {
           </div>
 
           <div className="cta-group">
-            {/* FIX: Button now reflects acquisition status */}
             <button
               className={`buy-button ${manifestStatus === 'success' ? 'success' : ''}`}
               onClick={handleAcquisition}
@@ -113,7 +107,6 @@ const ProductDetail = ({ addToManifest, addToVault }) => {
               {manifestStatus === 'success' ? "UNIT_ACQUIRED ✓" : "INITIALIZE_ACQUISITION"}
             </button>
 
-            {/* FIX: onClick now uses handleVault with guard, not raw addToVault(shoe) */}
             <button
               className={`fav-button ${vaultStatus === 'success' ? 'success' : ''}`}
               onClick={handleVault}

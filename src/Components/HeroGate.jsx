@@ -16,7 +16,7 @@ const HeroGate = () => {
         <h1 className="logo-title">VESTIGE</h1>
         
         <div className="category-selection">
-          {/* Use Link to navigate to your collection */}
+         
           <Link to="/collection/women">
             <button className="gate-btn">SHOP_WOMEN</button>
           </Link>

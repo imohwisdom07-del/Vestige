@@ -52,7 +52,6 @@
   font-weight: 700;
 }
 
-/* --- DATA PANEL --- */
 .scroll-data {
   flex: 1;
   position: sticky;
@@ -218,7 +217,6 @@
   letter-spacing: 4px;
 }
 
-/* Vault button success state */
 .fav-button.fav-success {
   background: #000;
   color: #00ff88;

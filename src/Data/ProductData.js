@@ -23,7 +23,7 @@ import MaxPlusHover from "/public/mens shoe/Nike-Air-Max-Plus €196,31/Photosho
 import Timbs from "/public/mens shoe/Timberlands/Mens-Waterproof-Field-Boot-TBL-HERO-base.avif";
 import TimbsHover from "/public/mens shoe/Timberlands/Mens-Waterproof-Field-Boot-TBL-ALT4-hover.avif";
 
-// ... [KEEP ALL YOUR IMPORTS AT THE TOP EXACTLY AS THEY ARE] ...
+
 
 export const VESTIGE_COLLECTION = [
   {
